@@ -27,8 +27,10 @@ def perform_check(raw_xml_string: str):
         test_name = rule.attrib["name"]
         tags = []
         for lst in rule.findall("list"):
-            if lst.attrib["name"] == "tags":
-                tags = [child.attrib["value"] for child in lst.getchildren()]
+            if lst.attrib["name"] != "tags":
+                continue
+            tags = [child.attrib["value"] for child in lst.getchildren()]
+            break
         team_owner = [t for t in tags if t.startswith("team:")]
         if len(team_owner) == 0:
             missing_owners.append(test_name)
