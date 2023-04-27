@@ -40,7 +40,7 @@ class MyCallbacks(DefaultCallbacks):
     ):
         # Make sure this episode has just been started (only initial obs
         # logged so far).
-        assert episode.length == 0, (
+        assert episode.length == -1, (
             "ERROR: `on_episode_start()` callback should be called right "
             "after env reset!"
         )
